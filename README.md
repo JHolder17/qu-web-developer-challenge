@@ -1,6 +1,6 @@
 # qu-web-developer-challenge
 
-This template should help get you started developing with Vue 3 in Vite.
+A simple Vue.js app that fetches jokes from a public API, displays them, and allows sorting, pagination, and joke management.
 
 ## Recommended IDE Setup
 
