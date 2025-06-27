@@ -1,21 +1,49 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-</script>
-
 <template>
-  <header>
-    <div class="wrapper">
-      <div>Welcome</div>
-      <nav>
-        <RouterLink to="/">Home</RouterLink>&nbsp;
-        <RouterLink to="/favorites">Favorites</RouterLink>
-      </nav>
-    </div>
-  </header>
+  <Menubar :model="menuItems">
+    <template #start>
+      Welcome
+    </template>
+  </Menubar>
   <RouterView />
-  <footer>Fotter</footer>
+  <footer>&copy; Joseph Holder {{ new Date().getFullYear() }}</footer>
 </template>
 
-<style scoped>
+<script setup lang="ts">
+import { useRouter } from 'vue-router';
+import Menubar from 'primevue/menubar';
+import { ref } from 'vue';
 
+const router = useRouter();
+const menuItems = ref([
+  {
+    label: 'Home',
+    icon: 'pi pi-home',
+    command: () => {
+      router.push('/');
+    }
+  },
+  {
+    label: 'Favorites',
+    icon: 'pi pi-star',
+    command: () => {
+      router.push('/favorites');
+    }
+  }
+]);
+</script>
+
+<style scoped>
+.p-menubar {
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2rem;
+  text-align: center;
+}
 </style>
