@@ -1,21 +1,25 @@
-import './assets/main.css'
+import './assets/main.css';
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+
 import PrimeVue from 'primevue/config';
 import Material from '@primeuix/themes/material';
 
-const app = createApp(App)
+import 'primeicons/primeicons.css';
+import 'primeflex/primeflex.css';   
+
+const app = createApp(App);
 
 app.use(PrimeVue, {
-    theme: {
-        preset: Material,
-        options: {
-          darkModeSelector: false || 'none',
-      }
-    }
- });
-app.use(router)
+  theme: {
+    preset: Material,
+    options: {
+      darkModeSelector: false || 'none',
+    },
+  },
+});
 
-app.mount('#app')
+app.use(router);
+app.mount('#app');

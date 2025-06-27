@@ -6,3 +6,8 @@ export const getRandomJoke = async () => {
   const res = await axios.get(`${API_BASE}/random_joke`);
   return res.data;
 };
+
+export const getOneHundredJokes = async () => {
+  const res = await axios.get(`${API_BASE}/jokes/random/100`);
+  return res.data;
+};
