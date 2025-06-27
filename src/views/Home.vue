@@ -15,17 +15,29 @@
         </div>
       </template>
     </Card>
-    <DataTable :value="jokesTableData" tableStyle="min-width: 50rem">
+    <DataTable :value="jokesTableData" stripedRows tableStyle="min-width: 50rem">
       <template #header>
         <div class="flex flex-wrap items-center justify-content-between gap-2">
           <span class="text-xl font-bold">Top 100 Jokes</span>
           <Button icon="pi pi-refresh" rounded raised />
         </div>
       </template>
-      <Column field="type" header="Category"></Column>
-      <Column field="setup" header="Setup"></Column>
-      <Column field="punchline" header="Puncline"></Column>
-      <Column field="rating" header="Reviews">
+      <Column field="type" header="Category" sortable style="width: 10%"></Column>
+      <Column field="setup" header="Setup" sortable style="width: 50%"></Column>
+      <Column field="punchline" header="Punchline" style="width: 30%">
+        <template #body="slotProps">
+          <Button 
+            v-if="!revealedJokeIds.includes(slotProps.data.id)"
+            @click="() => handleJokeRevealClick(slotProps.data.id)"
+          >
+            Reveal Punchline
+          </Button>
+          <div v-else>
+            {{ slotProps.data.punchline }}
+          </div>
+        </template>
+      </Column>
+      <Column field="rating" header="Rating" sortable style="width: 10%">
         <template #body="slotProps">
           <Rating :modelValue="slotProps.data.rating"
             @update:modelValue="(value) => handleJokeRatingClick(value, slotProps.data)" />
@@ -62,6 +74,7 @@ const getJoke = async () => {
 //Joke Table Logic
 const jokesTableData = ref([])
 const jokeTableDataLoading = ref(true);
+//to upper case the category
 const getJokes = async () => {
   jokeTableDataLoading.value = true;
   try {
@@ -74,8 +87,15 @@ const getJokes = async () => {
 }
 
 const handleJokeRatingClick = (rating, joke) => {
-  console.log("rating", rating);
-  console.log("joke", joke,);
+  // console.log("rating", rating);
+  // console.log("joke", joke,);
+}
+
+const revealedJokeIds = ref([]);
+const handleJokeRevealClick = (id) => {
+ if (!revealedJokeIds.value.includes(id)) {
+    revealedJokeIds.value.push(id);
+  }
 }
 
 onMounted(() => {
