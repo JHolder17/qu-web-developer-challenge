@@ -42,11 +42,19 @@ const jokeTableDataLoading = ref(true);
 const getJokes = async () => {
   jokeTableDataLoading.value = true;
   try {
-    // need to account for ratings of favorite jokes in local storage so they show up with rating
     const jokes = await getOneHundredJokes();
-    allJokes.value = jokes;
+    const storedFavorites = JSON.parse(localStorage.getItem('favoriteJokes')) || [];
+
+    const favoriteMap = new Map(storedFavorites.map(joke => [joke.id, joke]));
+    const mergedJokes = jokes.map(joke => {
+      const favorite = favoriteMap.get(joke.id);
+      return favorite ? { ...joke, rating: favorite.rating } : { ...joke, rating: 0 };
+    });
+
+    allJokes.value = mergedJokes;
     chartData.value = jokeByType();
-    jokesTableData.value = jokes;
+    jokesTableData.value = mergedJokes;
+
   } catch (err) {
     console.error('Failed to fetch one hundred jokes:', err);
   } finally {
