@@ -6,14 +6,14 @@
     <div class="col-6">
       <Card>
         <template #content>
-          <Chart type="bar" :data="barChartData"></Chart>
+          <Chart type="bar" :data="barChartData" :options="barChartOptions" />
         </template>
       </Card>
     </div>
     <div class="col-6">
       <Card>
         <template #content>
-          <div class="text-center p-3 border-round-sm bg-primary font-bold">Right Chart</div>
+            <Chart type="doughnut" :data="donutChartData" :options="donutChartOptions" style="max-width: 450px; margin: auto;"/>
         </template>
       </Card>
     </div>
@@ -78,12 +78,11 @@ import Column from 'primevue/column';
 import Rating from 'primevue/rating';
 import ProgressSpinner from 'primevue/progressspinner';
 import Chart from 'primevue/chart';
-import { all } from 'axios';
 
 //Bar chart
 const barChartData = ref();
 const barChartOptions = ref();
-const setChartData = () => {
+const setBarChartData = () => {
   return {
     labels: ['General', 'Programming', 'Dad', 'Knock-Knock'],
     datasets: [
@@ -97,41 +96,72 @@ const setChartData = () => {
     ]
   }
 }
-const setChartOptions = () => {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue('--p-text-color');
-    const textColorSecondary = documentStyle.getPropertyValue('--p-text-muted-color');
-    const surfaceBorder = documentStyle.getPropertyValue('--p-content-border-color');
+const setBarChartOptions = () => {
+  const documentStyle = getComputedStyle(document.documentElement);
+  const textColor = documentStyle.getPropertyValue('--p-text-color');
+  const textColorSecondary = documentStyle.getPropertyValue('--p-text-muted-color');
+  const surfaceBorder = documentStyle.getPropertyValue('--p-content-border-color');
 
-    return {
-        plugins: {
-            legend: {
-                labels: {
-                    color: textColor
-                }
-            }
-        },
-        scales: {
-            x: {
-                ticks: {
-                    color: textColorSecondary
-                },
-                grid: {
-                    color: surfaceBorder
-                }
-            },
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    color: textColorSecondary
-                },
-                grid: {
-                    color: surfaceBorder
-                }
-            }
+  return {
+    plugins: {
+      legend: {
+        labels: {
+          color: textColor
         }
-    };
-  }
+      }
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: textColorSecondary
+        },
+        grid: {
+          color: surfaceBorder
+        }
+      },
+      y: {
+        beginAtZero: true,
+        ticks: {
+          color: textColorSecondary
+        },
+        grid: {
+          color: surfaceBorder
+        }
+      }
+    }
+  };
+}
+
+//Donut Chart
+const donutChartData = ref();
+const donutChartOptions = ref();
+const setDonutChartData = () => {
+  return {
+    labels: ['General', 'Programming', 'Dad', 'Knock-Knock'],
+    datasets: [
+      {
+        data: jokeByType(),
+        backgroundColor: ['rgb(249, 115, 22)', 'rgb(6, 182, 212)', 'rgb(107, 114, 128)', 'rgb(139, 92, 246)'],
+        hoverBackgroundColor: ['rgba(249, 115, 22, 0.2)', 'rgba(6, 182, 212, 0.2)', 'rgb(107, 114, 128, 0.2)', 'rgba(139, 92, 246 0.2)']
+      }
+    ]
+  };
+};
+const setDonutChartOptions = () => {
+  const documentStyle = getComputedStyle(document.documentElement);
+  const textColor = documentStyle.getPropertyValue('--p-text-color');
+
+  return {
+    plugins: {
+      legend: {
+        labels: {
+          cutout: '10%',
+          color: textColor
+        }
+      }
+    }
+  };
+};
 
 const jokeByType = () => {
   const counts = allJokes.value.reduce((acc, joke) => {
@@ -147,7 +177,7 @@ const jokeByType = () => {
   });
 
   return [counts.general, counts.programming, counts.dad, counts['knock-knock']];
-} 
+}
 
 //Joke Table Logic
 const allJokes = ref([])
@@ -200,8 +230,10 @@ const handleFilterClick = (category) => {
 
 onMounted(async () => {
   await getJokes();
-  barChartData.value = setChartData();
-  barChartOptions.value = setChartOptions();
+  barChartData.value = setBarChartData();
+  barChartOptions.value = setBarChartOptions();
+  donutChartData.value = setDonutChartData();
+  donutChartOptions.value = setDonutChartOptions();
 });
 </script>
 
