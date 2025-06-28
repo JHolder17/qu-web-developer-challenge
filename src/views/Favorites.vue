@@ -27,13 +27,7 @@
 </template>
 
 <script setup>
-import Button from 'primevue/button';
-import Card from 'primevue/card';
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
 import { ref, onMounted } from 'vue';
-import Rating from 'primevue/rating';
-import ProgressSpinner from 'primevue/progressspinner';
 
 const favorites = ref([]);
 const loadFavorites = () => {

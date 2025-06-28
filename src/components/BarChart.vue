@@ -1,8 +1,6 @@
 <template>
-  <div class="flex-1 bg-white p-4 rounded">
     <div class="text-xl font-bold">Bar Chart</div>
     <Chart type="bar" :data="chartData" :options="chartOptions" />
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -35,35 +33,33 @@ const chartData = computed(() => ({
   ]
 }));
 
-const chartOptions = computed(() => {
-  const style = getComputedStyle(document.documentElement);
-  return {
-    plugins: {
-      legend: {
-        labels: {
-          color: style.getPropertyValue('--p-text-color')
-        }
-      }
-    },
-    scales: {
-      x: {
-        ticks: {
-          color: style.getPropertyValue('--p-text-muted-color')
-        },
-        grid: {
-          color: style.getPropertyValue('--p-content-border-color')
-        }
-      },
-      y: {
-        beginAtZero: true,
-        ticks: {
-          color: style.getPropertyValue('--p-text-muted-color')
-        },
-        grid: {
-          color: style.getPropertyValue('--p-content-border-color')
-        }
+const style = getComputedStyle(document.documentElement);
+const chartOptions = {
+  plugins: {
+    legend: {
+      labels: {
+        color: style.getPropertyValue('--p-text-color')
       }
     }
-  };
-});
+  },
+  scales: {
+    x: {
+      ticks: {
+        color: style.getPropertyValue('--p-text-muted-color')
+      },
+      grid: {
+        color: style.getPropertyValue('--p-content-border-color')
+      }
+    },
+    y: {
+      beginAtZero: true,
+      ticks: {
+        color: style.getPropertyValue('--p-text-muted-color')
+      },
+      grid: {
+        color: style.getPropertyValue('--p-content-border-color')
+      }
+    }
+  }
+};
 </script>
