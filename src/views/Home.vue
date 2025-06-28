@@ -3,17 +3,16 @@
   <div class="space-y-4">
     <div class="flex flex-col mx-5 md:flex-row gap-4">
       <div class="flex-1 bg-white p-4 rounded">
-        <Chart type="bar" :data="barChartData" :options="barChartOptions" />
+        <BarChart :barChartData="chartData" />
       </div>
       <div class="flex-1 bg-white p-4 rounded">
-        <Chart type="doughnut" :data="donutChartData" :options="donutChartOptions"
-          style="max-width: 450px; margin: auto;" />
+        <DonutChart :donutChartData="chartData" />
       </div>
     </div>
   </div>
   <Card class="my-4 mx-5">
     <template #title>
-      <div class="flex flex-wrap items-center align-items-baseline justify-content-between">
+      <div class="flex flex-wrap align-items-baseline justify-content-between">
         <span class="text-xl font-bold">Top 100 Jokes</span>
         <Button icon="pi pi-refresh" rounded raised @click="getJokes" />
       </div>
@@ -62,97 +61,8 @@
 // https://primevue.org/autoimport/
 import { ref, onMounted } from 'vue';
 import { getOneHundredJokes } from '@/api/jokes.js';
-import Card from 'primevue/card';
-import Button from 'primevue/button';
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
-import Rating from 'primevue/rating';
-import ProgressSpinner from 'primevue/progressspinner';
-import Chart from 'primevue/chart';
 
-//Bar chart
-const barChartData = ref();
-const barChartOptions = ref();
-const setBarChartData = () => {
-  return {
-    labels: ['General', 'Programming', 'Dad', 'Knock-Knock'],
-    datasets: [
-      {
-        label: 'Jokes',
-        data: jokeByType(),
-        backgroundColor: ['rgba(249, 115, 22, 0.2)', 'rgba(6, 182, 212, 0.2)', 'rgb(107, 114, 128, 0.2)', 'rgba(139, 92, 246 0.2)'],
-        borderColor: ['rgb(249, 115, 22)', 'rgb(6, 182, 212)', 'rgb(107, 114, 128)', 'rgb(139, 92, 246)'],
-        borderWidth: 1
-      }
-    ]
-  }
-}
-const setBarChartOptions = () => {
-  const documentStyle = getComputedStyle(document.documentElement);
-  const textColor = documentStyle.getPropertyValue('--p-text-color');
-  const textColorSecondary = documentStyle.getPropertyValue('--p-text-muted-color');
-  const surfaceBorder = documentStyle.getPropertyValue('--p-content-border-color');
-
-  return {
-    plugins: {
-      legend: {
-        labels: {
-          color: textColor
-        }
-      }
-    },
-    scales: {
-      x: {
-        ticks: {
-          color: textColorSecondary
-        },
-        grid: {
-          color: surfaceBorder
-        }
-      },
-      y: {
-        beginAtZero: true,
-        ticks: {
-          color: textColorSecondary
-        },
-        grid: {
-          color: surfaceBorder
-        }
-      }
-    }
-  };
-}
-
-//Donut Chart
-const donutChartData = ref();
-const donutChartOptions = ref();
-const setDonutChartData = () => {
-  return {
-    labels: ['General', 'Programming', 'Dad', 'Knock-Knock'],
-    datasets: [
-      {
-        data: jokeByType(),
-        backgroundColor: ['rgb(249, 115, 22)', 'rgb(6, 182, 212)', 'rgb(107, 114, 128)', 'rgb(139, 92, 246)'],
-        hoverBackgroundColor: ['rgba(249, 115, 22, 0.2)', 'rgba(6, 182, 212, 0.2)', 'rgb(107, 114, 128, 0.2)', 'rgba(139, 92, 246 0.2)']
-      }
-    ]
-  };
-};
-const setDonutChartOptions = () => {
-  const documentStyle = getComputedStyle(document.documentElement);
-  const textColor = documentStyle.getPropertyValue('--p-text-color');
-
-  return {
-    plugins: {
-      legend: {
-        labels: {
-          cutout: '10%',
-          color: textColor
-        }
-      }
-    }
-  };
-};
+const chartData = ref();
 
 const jokeByType = () => {
   const counts = allJokes.value.reduce((acc, joke) => {
@@ -180,8 +90,7 @@ const getJokes = async () => {
     // need to account for ratings of favorite jokes in local storage so they show up with rating
     const jokes = await getOneHundredJokes();
     allJokes.value = jokes;
-    barChartData.value = setBarChartData();
-    donutChartData.value = setDonutChartData();
+    chartData.value = jokeByType();
     jokesTableData.value = jokes;
   } catch (err) {
     console.error('Failed to fetch one hundred jokes:', err);
@@ -223,10 +132,6 @@ const handleFilterClick = (category) => {
 
 onMounted(async () => {
   await getJokes();
-  barChartData.value = setBarChartData();
-  barChartOptions.value = setBarChartOptions();
-  donutChartData.value = setDonutChartData();
-  donutChartOptions.value = setDonutChartOptions();
 });
 </script>
 
