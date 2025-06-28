@@ -1,6 +1,5 @@
 <template>
-  <div class="favorites">
-    <Card class="mt-2" style="width: 100%;">
+    <Card class="my-4 mx-5">
       <template #title>
         <span class="text-xl font-bold">Favorite Jokes</span>
       </template>
@@ -25,7 +24,6 @@
         </DataTable>
       </template>
     </Card>
-  </div>
 </template>
 
 <script setup>

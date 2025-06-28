@@ -8,7 +8,7 @@
     <main>
       <RouterView />
     </main>
-    <!-- <footer>&copy; Joseph Holder {{ new Date().getFullYear() }}</footer> -->
+    <footer class="w-full mb-4 h-4 flex items-center justify-center">&copy; Joseph Holder {{ new Date().getFullYear() }}</footer>
   </div>
 
 </template>
@@ -50,12 +50,5 @@ const menuItems = ref([
   border: none;
   border-radius: none;
   border-bottom: 1px solid var(--p-menubar-border-color);
-}
-
-footer {
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2rem;
 }
 </style>
