@@ -1,11 +1,16 @@
 <template>
-  <Menubar :model="menuItems">
-    <template #start>
-      Welcome
-    </template>
-  </Menubar>
-  <RouterView />
-  <footer>&copy; Joseph Holder {{ new Date().getFullYear() }}</footer>
+  <div>
+    <Menubar :model="menuItems">
+      <template #start>
+        Welcome to the Laugh Factory!
+      </template>
+    </Menubar>
+    <main>
+      <RouterView />
+    </main>
+    <!-- <footer>&copy; Joseph Holder {{ new Date().getFullYear() }}</footer> -->
+  </div>
+
 </template>
 
 <script setup lang="ts">
@@ -34,16 +39,16 @@ const menuItems = ref([
 
 <style scoped>
 .p-menubar {
-  top: 0;
-  left: 0;
-  width: 100%;
+  justify-content: space-between;
+  border: none;
+  border-radius: none;
+  border-bottom: 1px solid var(--p-menubar-border-color);
 }
+
 footer {
-  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 2rem;
-  text-align: center;
 }
 </style>
