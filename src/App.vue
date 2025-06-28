@@ -33,6 +33,13 @@ const menuItems = ref([
     command: () => {
       router.push('/favorites');
     }
+  },
+  {
+    label: 'Source Code',
+    icon: 'pi pi-github',
+    command: () => {
+      window.open('https://github.com/JHolder17/qu-web-developer-challenge', '_blank');;
+    }
   }
 ]);
 </script>
