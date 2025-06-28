@@ -74,8 +74,18 @@ const getJokes = async () => {
 }
 
 const handleJokeRatingClick = (rating, joke) => {
-  // console.log("rating", rating);
-  // console.log("joke", joke,);
+  joke.rating = rating;
+
+  const favorites = JSON.parse(localStorage.getItem('favoriteJokes')) || [];
+  const index = favorites.findIndex(j => j.id === joke.id);
+
+  if (index !== -1) {
+    favorites[index] = joke;
+  } else {
+    favorites.push(joke);
+  }
+
+  localStorage.setItem('favoriteJokes', JSON.stringify(favorites));
 }
 
 const revealedJokeIds = ref([]);
