@@ -35,6 +35,11 @@
               @update:modelValue="(value) => handleJokeRatingClick(value, slotProps.data)" />
           </template>
         </Column>
+        <template #empty>
+          <div class="text-center py-10 text-gray-500">
+            Sorry no {{activeCategory}} jokes ¯\_(ツ)_/¯
+          </div>
+        </template>
       </DataTable>
     </template>
     <template #content v-else>
@@ -90,7 +95,9 @@ const handleJokeRevealClick = (id) => {
   }
 }
 
+const activeCategory = ref()
 const handleFilterClick = (category) => {
+  activeCategory.value = category;
   if (!category || category === 'all') {
     tableData.value = [...props.allJokes];
     return;
