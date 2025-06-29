@@ -15,14 +15,16 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { getOneHundredJokes } from '@/api/jokes.js';
+import { getOneHundredJokes } from '@/api/jokes.ts';
+import type { Joke, JokeType } from '@/types/Joke';
 
 const jokeByType = () => {
   const counts = allJokes.value.reduce((acc, joke) => {
-    if (acc[joke.type] !== undefined) {
-      acc[joke.type]++;
+    const type = joke.type as JokeType;
+    if (acc[type] !== undefined) {
+      acc[type]++;
     }
     return acc;
   }, {
@@ -36,17 +38,18 @@ const jokeByType = () => {
 }
 
 const chartData = ref();
-const allJokes = ref([])
-const jokesTableData = ref([])
+const allJokes = ref<Joke[]>([])
+const jokesTableData = ref<Joke[]>([])
 const jokeTableDataLoading = ref(true);
 const getJokes = async () => {
   jokeTableDataLoading.value = true;
   try {
     const jokes = await getOneHundredJokes();
-    const storedFavorites = JSON.parse(localStorage.getItem('favoriteJokes')) || [];
+    const favoriteJokesRaw = localStorage.getItem('favoriteJokes');
+    const storedFavorites = favoriteJokesRaw ? JSON.parse(favoriteJokesRaw) : [];
 
-    const favoriteMap = new Map(storedFavorites.map(joke => [joke.id, joke]));
-    const mergedJokes = jokes.map(joke => {
+    const favoriteMap = new Map((storedFavorites as Joke[]).map((joke: Joke) => [joke.id, joke]));
+    const mergedJokes = (jokes as Joke[]).map((joke: Joke) => {
       const favorite = favoriteMap.get(joke.id);
       return favorite ? { ...joke, rating: favorite.rating } : { ...joke, rating: 0 };
     });
@@ -62,12 +65,8 @@ const getJokes = async () => {
   }
 }
 
-
-
 onMounted(async () => {
   await getJokes();
 });
 </script>
 
-
-<style scoped></style>
