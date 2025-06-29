@@ -4,7 +4,6 @@
       <span class="text-xl font-bold">Favorite Jokes</span>
     </template>
     <template #content>
-      <!-- empty state -->
       <DataTable :value="favorites" stripedRows tableStyle="min-width: 50rem" paginator :rows="10"
         :rowsPerPageOptions="[10, 20, 50]" class="mb-1">
         <Column field="type" header="Category" sortable style="width: 10%"></Column>
@@ -24,7 +23,7 @@
         </Column>
         <template #empty>
           <div class="text-center py-10 text-gray-500">
-            You have no favorite jokes yet ¯\_(ツ)_/¯.
+            You have no favorite jokes yet ¯\_(ツ)_/¯
           </div>
         </template>
       </DataTable>
