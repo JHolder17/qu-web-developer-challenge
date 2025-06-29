@@ -1,5 +1,5 @@
 <template>
-  <div class="my-3 pl-5 text-3xl">Dashboard</div>
+  <div class="my-3 pl-5 text-3xl">Jokes Dashboard</div>
   <div class="space-y-4">
     <div class="flex flex-col mx-5 md:flex-row gap-4">
       <div class="flex-1 bg-white p-4 rounded">

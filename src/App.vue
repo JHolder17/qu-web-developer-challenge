@@ -47,6 +47,7 @@ const menuItems = ref([
 <style scoped>
 .p-menubar {
   justify-content: space-between;
+  padding-left: 2rem;
   border: none;
   border-radius: none;
   border-bottom: 1px solid var(--p-menubar-border-color);
