@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="min-h-screen flex flex-col">
     <Menubar :model="menuItems">
       <template #start>
         Welcome to the Laugh Factory!
       </template>
     </Menubar>
-    <main>
+    <main class="flex-1">
       <RouterView />
     </main>
     <footer class="w-full mb-4 h-4 flex items-center justify-center">&copy; Joseph Holder {{ new Date().getFullYear() }}</footer>

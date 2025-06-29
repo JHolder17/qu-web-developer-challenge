@@ -11,10 +11,6 @@ export default defineConfig({
   plugins: [
     vue(),
     Components({
-      dirs: ['src/components'],
-      extensions: ['vue'],
-      deep: true,
-      dts: true,
       resolvers: [
         PrimeVueResolver()
       ]
