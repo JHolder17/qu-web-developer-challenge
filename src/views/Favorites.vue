@@ -31,8 +31,9 @@
   </Card>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import type { Joke } from '@/types/Joke';
 
 const favorites = ref([]);
 const loadFavorites = () => {
@@ -40,11 +41,11 @@ const loadFavorites = () => {
   favorites.value = JSON.parse(favoritesString)
 }
 
-const handleJokeRatingClick = (rating, joke) => {
+const handleJokeRatingClick = (rating: number, joke: Joke) => {
   joke.rating = rating;
 
   const favorites = JSON.parse(localStorage.getItem('favoriteJokes') || '[]') || [];
-  const index = favorites.findIndex(j => j.id === joke.id);
+  const index = favorites.findIndex((j: Joke) => j.id === joke.id);
 
   if (index !== -1) {
     favorites[index] = joke;
@@ -55,10 +56,9 @@ const handleJokeRatingClick = (rating, joke) => {
   localStorage.setItem('favoriteJokes', JSON.stringify(favorites));
 }
 
-const handleRemoveFavorite = (joke) => {
-  console.log(joke)
+const handleRemoveFavorite = (joke: Joke) => {
   const stored = JSON.parse(localStorage.getItem('favoriteJokes') || '[]');
-  const updated = stored.filter(j => j.id !== joke.id);
+  const updated = stored.filter((j: Joke) => j.id !== joke.id);
 
   localStorage.setItem('favoriteJokes', JSON.stringify(updated));
 
@@ -69,6 +69,3 @@ onMounted(() => {
 });
 </script>
 
-
-
-<style></style>
