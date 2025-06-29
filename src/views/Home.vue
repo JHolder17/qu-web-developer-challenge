@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { getOneHundredJokes } from '@/api/jokes.ts';
 import type { Joke, JokeType } from '@/types/Joke';
 
@@ -37,7 +37,7 @@ const jokeByType = () => {
   return [counts.general, counts.programming, counts.dad, counts['knock-knock']];
 }
 
-const chartData = ref();
+const chartData = computed(() => jokeByType());
 const allJokes = ref<Joke[]>([])
 const jokesTableData = ref<Joke[]>([])
 const jokeTableDataLoading = ref(true);
@@ -55,7 +55,6 @@ const getJokes = async () => {
     });
 
     allJokes.value = mergedJokes;
-    chartData.value = jokeByType();
     jokesTableData.value = mergedJokes;
 
   } catch (err) {

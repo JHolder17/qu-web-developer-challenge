@@ -50,8 +50,9 @@
   </Card>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, watch } from 'vue';
+import type { Joke, JokeFilter } from '@/types/Joke';
 
 const props = defineProps({
   jokesTableData: Array,
@@ -59,11 +60,11 @@ const props = defineProps({
   jokeTableDataLoading: Boolean
 });
 
-const tableData = ref([]);
+const tableData = ref<Joke[]>([]);
 watch(
-  () => props.jokesTableData,
-  (newData) => {
-    tableData.value = [...newData];
+  () => (props.jokesTableData as Joke[] || []),
+  (newData: Joke[]) => {
+    tableData.value = [...(newData || [])];
   },
   { immediate: true }
 );
@@ -73,11 +74,11 @@ const handleGetJokes = () => {
   emit('updateJokesTableData');
 }
 
-const handleJokeRatingClick = (rating, joke) => {
+const handleJokeRatingClick = (rating: number, joke: Joke) => {
   joke.rating = rating;
 
-  const favorites = JSON.parse(localStorage.getItem('favoriteJokes')) || [];
-  const index = favorites.findIndex(j => j.id === joke.id);
+  const favorites = JSON.parse(localStorage.getItem('favoriteJokes') || '[]') || [];
+  const index = favorites.findIndex((j: Joke) => j.id === joke.id);
 
   if (index !== -1) {
     favorites[index] = joke;
@@ -88,22 +89,22 @@ const handleJokeRatingClick = (rating, joke) => {
   localStorage.setItem('favoriteJokes', JSON.stringify(favorites));
 }
 
-const revealedJokeIds = ref([]);
-const handleJokeRevealClick = (id) => {
+const revealedJokeIds = ref<number[]>([]);
+const handleJokeRevealClick = (id: number) => {
   if (!revealedJokeIds.value.includes(id)) {
     revealedJokeIds.value.push(id);
   }
 }
 
-const activeCategory = ref()
-const handleFilterClick = (category) => {
+const activeCategory = ref<JokeFilter>('all');
+const handleFilterClick = (category: JokeFilter) => {
   activeCategory.value = category;
   if (!category || category === 'all') {
-    tableData.value = [...props.allJokes];
+    tableData.value = [...((props.allJokes as Joke[]) || [])];
     return;
   }
 
-  tableData.value = props.allJokes.filter(joke => joke.type === category);
+  tableData.value = (props.allJokes as Joke[]).filter(joke => joke.type === category);
 };
 
 </script>

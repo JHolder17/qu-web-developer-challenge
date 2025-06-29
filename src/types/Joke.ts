@@ -5,6 +5,7 @@ export interface Joke {
     punchline: string;
     rating?: number;
 }
-
 export type JokeType = 'general' | 'programming' | 'dad' | 'knock-knock';
+export type JokeFilter = JokeType | 'all';
+
  
