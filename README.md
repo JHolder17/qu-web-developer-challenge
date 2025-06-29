@@ -1,20 +1,58 @@
+
 # qu-web-developer-challenge
 
-A simple Vue.js app that fetches jokes from a public API, displays them, and allows sorting, pagination, and joke management.
+A simple Vue.js app aka "The Laugh Factory" that fetches jokes from a public API, displays them, and allows sorting, pagination, and joke management.
 
-## Recommended IDE Setup
+## 🚀 Live Demo
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+[🔗 View the deployed app](https://your-live-link.netlify.app)
 
-## Type Support for `.vue` Imports in TS
+## Tech Stack
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+-  **Vue 3** (via Vite)
 
-## Customize configuration
+-  **Axios** for API requests
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+-  **Tailwind CSS** for styling
 
-## Project Setup
+-  **LocalStorage** for persistence
+
+-  **HTML5 + CSS3 + JavaScript (ES6) + TypeScript**
+
+  
+
+## ✨ Features
+
+  
+
+✅ Fetches jokes from the [Official Joke API](https://github.com/15Dkatz/official_joke_api)
+
+✅ Displays jokes in a clean, responsive card layout
+
+✅ Pagination (client-side)
+
+✅ Sorting by setup, punchline, or type
+
+✅ Add/remove favorite jokes
+
+✅ Persist favorites using `localStorage`
+
+✅ Handles loading and no data states
+
+✅ Modular structure and centralized API calls
+
+  
+
+## Getting Started
+
+  
+
+### Clone the Repo
+
+```sh
+git  clone  https://github.com/JHolder17/qu-web-developer-challenge.git
+```
+### Install dependencies
 
 ```sh
 npm install
@@ -23,11 +61,19 @@ npm install
 ### Compile and Hot-Reload for Development
 
 ```sh
-npm run dev
+
+npm  run  dev
+
 ```
+
+  
 
 ### Type-Check, Compile and Minify for Production
 
+  
+
 ```sh
-npm run build
+
+npm  run  build
+
 ```
