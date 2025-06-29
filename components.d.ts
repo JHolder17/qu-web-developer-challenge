@@ -15,7 +15,6 @@ declare module 'vue' {
     Column: typeof import('primevue/column')['default']
     DataTable: typeof import('primevue/datatable')['default']
     DonutChart: typeof import('./src/components/DonutChart.vue')['default']
-    FeaturedJoke: typeof import('./src/components/FeaturedJoke.vue')['default']
     JokeTable: typeof import('./src/components/JokeTable.vue')['default']
     ProgressSpinner: typeof import('primevue/progressspinner')['default']
     Rating: typeof import('primevue/rating')['default']
