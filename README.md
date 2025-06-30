@@ -5,7 +5,7 @@ A simple Vue.js app aka "The Laugh Factory" that fetches jokes from a public API
 
 ## 🚀 Live Demo
 
-[🔗 View the deployed app](https://your-live-link.netlify.app)
+🔗 [View the deployed app](https://jholder17.github.io/qu-web-developer-challenge/)
 
 ## Tech Stack
 
