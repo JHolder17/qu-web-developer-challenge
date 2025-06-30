@@ -4,7 +4,7 @@
       <span class="text-xl font-bold">Favorite Jokes</span>
     </template>
     <template #content>
-      <DataTable :value="favorites" stripedRows tableStyle="min-width: 50rem" paginator :rows="10"
+      <DataTable :value="favorites" stripedRows paginator :rows="10"
         :rowsPerPageOptions="[10, 20, 50]" class="mb-1">
         <Column field="type" header="Category" sortable style="width: 10%"></Column>
         <Column field="setup" header="Setup" sortable style="width: 50%"></Column>
