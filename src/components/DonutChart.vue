@@ -1,6 +1,8 @@
 <template>
+  <div class="w-full max-w-[450px] mx-auto">
     <div class="text-xl font-bold">Donut Chart</div>
-    <Chart type="doughnut" :data="chartData" :options="chartOptions" style="max-width: 450px; margin: auto;" />
+    <Chart type="doughnut" :data="chartData" :options="chartOptions" />
+  </div>
 </template>
 
 <script setup lang="ts">
