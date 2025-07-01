@@ -19,11 +19,7 @@ A simple Vue.js app aka "The Laugh Factory" that fetches jokes from a public API
 
 -  **HTML5 + CSS3 + JavaScript (ES6) + TypeScript**
 
-  
-
 ## ✨ Features
-
-  
 
 ✅ Fetches jokes from the [Official Joke API](https://github.com/15Dkatz/official_joke_api)
 
@@ -35,17 +31,15 @@ A simple Vue.js app aka "The Laugh Factory" that fetches jokes from a public API
 
 ✅ Add/remove favorite jokes
 
+✅ Add/remove custom jokes
+
 ✅ Persist favorites using `localStorage`
 
 ✅ Handles loading and no data states
 
 ✅ Modular structure and centralized API calls
 
-  
-
 ## Getting Started
-
-  
 
 ### Clone the Repo
 
@@ -61,19 +55,11 @@ npm install
 ### Compile and Hot-Reload for Development
 
 ```sh
-
 npm  run  dev
-
 ```
-
-  
 
 ### Type-Check, Compile and Minify for Production
 
-  
-
 ```sh
-
 npm  run  build
-
 ```
