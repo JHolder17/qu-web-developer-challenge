@@ -29,9 +29,7 @@ A simple Vue.js app aka "The Laugh Factory" that fetches jokes from a public API
 
 ✅ Sorting by setup, punchline, or type
 
-✅ Add/remove favorite jokes
-
-✅ Add/remove custom jokes
+✅ Add/remove favorite and custome jokes
 
 ✅ Persist favorites using `localStorage`
 
