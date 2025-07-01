@@ -9,7 +9,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AddJokeForm: typeof import('./src/components/AddJokeForm.vue')['default']
-    AutoComplete: typeof import('primevue/autocomplete')['default']
     BarChart: typeof import('./src/components/BarChart.vue')['default']
     Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
@@ -17,9 +16,6 @@ declare module 'vue' {
     Column: typeof import('primevue/column')['default']
     DataTable: typeof import('primevue/datatable')['default']
     DonutChart: typeof import('./src/components/DonutChart.vue')['default']
-    Dropdown: typeof import('primevue/dropdown')['default']
-    FavoriteTable: typeof import('./src/components/FavoriteTable.vue')['default']
-    Form: typeof import('@primevue/forms/form')['default']
     InputText: typeof import('primevue/inputtext')['default']
     JokeTable: typeof import('./src/components/JokeTable.vue')['default']
     Message: typeof import('primevue/message')['default']
