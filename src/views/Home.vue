@@ -2,10 +2,10 @@
   <div class="my-3 pl-5 text-3xl">Jokes Dashboard</div>
   <div class="space-y-4">
     <div class="flex flex-col mx-5 md:flex-row gap-4">
-      <div class="flex-1 bg-white p-4 rounded">
+      <div class="flex-1 chart-card">
         <BarChart :barChartData="chartData" />
       </div>
-      <div class="flex-1 bg-white p-4 rounded">
+      <div class="flex-1 chart-card">
         <DonutChart :donutChartData="chartData" />
       </div>
     </div>
@@ -41,6 +41,8 @@ const chartData = computed(() => jokeByType());
 const allJokes = ref<Joke[]>([])
 const jokesTableData = ref<Joke[]>([])
 const jokeTableDataLoading = ref(true);
+
+// Merges jokes from the API response and localStorage to preserve favorite rating
 const getJokes = async () => {
   jokeTableDataLoading.value = true;
   try {
@@ -56,7 +58,6 @@ const getJokes = async () => {
 
     allJokes.value = mergedJokes;
     jokesTableData.value = mergedJokes;
-
   } catch (err) {
     console.error('Failed to fetch one hundred jokes:', err);
   } finally {

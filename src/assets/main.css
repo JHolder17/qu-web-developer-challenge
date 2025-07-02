@@ -1,9 +1,22 @@
 @import 'primeicons/primeicons.css';
 @import "tailwindcss";
 
-
 body {
   margin: 0;
   padding: 0;
   background-color: tan;
 }
+
+.p-card{
+  border-radius: 1rem !important;
+}
+
+@layer components {
+  .chart-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+}
+
+/* TO-DO add more Tailwind Directives */
