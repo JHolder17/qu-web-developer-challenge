@@ -16,7 +16,7 @@
               @update:modelValue="(value) => handleJokeRatingClick(value, slotProps.data)" />
           </template>
         </Column>
-        <Column field="" header="" style="width: 10%">
+        <Column style="width: 10%">
           <template #body="slotProps">
             <Button icon="pi pi-trash" @click="() => handleRemoveFavorite(slotProps.data)" />
           </template>
@@ -43,15 +43,15 @@ const getFavoriteJokes = () => {
 
 // TODO: Move all localStorage logic into a composable for better reusability
 const handleJokeRatingClick = (rating: number, joke: Joke) => {
-  joke.rating = rating;
+const updatedJoke = { ...joke, rating };
 
-  const favorites = JSON.parse(localStorage.getItem('favoriteJokes') || '[]') || [];
-  const index = favorites.findIndex((j: Joke) => j.id === joke.id);
+  const localFavorites = JSON.parse(localStorage.getItem('favoriteJokes') || '[]') || [];
+  const index = localFavorites.findIndex((j: Joke) => j.id === updatedJoke.id);
 
   if (index !== -1) {
-    favorites[index] = joke;
+    localFavorites[index] = updatedJoke;
   } else {
-    favorites.push(joke);
+    localFavorites.push(updatedJoke);
   }
 
   localStorage.setItem('favoriteJokes', JSON.stringify(favorites));
