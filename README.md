@@ -10,6 +10,7 @@ A simple Vue.js app - aka "The Laugh Factory" - that fetches jokes from a public
 ## Tech Stack
 
 - **Vue 3** (via Vite)
+- **Vue Router** - navigation
 - **TypeScript**
 - **Axios** – API requests
 - **PrimeVue** – componentry
