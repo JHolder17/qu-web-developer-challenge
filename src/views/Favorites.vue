@@ -41,7 +41,7 @@ const getFavoriteJokes = () => {
   favorites.value = JSON.parse(favoritesString)
 }
 
-// TO-DO move this function to a common/utility function file 
+// TODO: Move all localStorage logic into a composable for better reusability
 const handleJokeRatingClick = (rating: number, joke: Joke) => {
   joke.rating = rating;
 

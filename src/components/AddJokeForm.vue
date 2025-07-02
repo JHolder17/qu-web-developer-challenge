@@ -25,12 +25,15 @@
       </div>
     </template>
   </Card>
+  <Toast position="center"/>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import type { Joke, JokeType } from '@/types/Joke';
+import { useToast } from 'primevue/usetoast';
 
+const toast = useToast();
 const emit = defineEmits(['updateFavoritesTableData']);
 
 const setup = ref('');
@@ -38,40 +41,35 @@ const punchline = ref('');
 const setupErr = ref(false);
 const punchlineErr = ref(false);
 const category = ref<JokeType>('general');
-const categoryItems = ['general', 'programming', 'dad', 'knock-knock'];
+const categoryItems: JokeType[] = ['general', 'programming', 'dad', 'knock-knock'];
 
+// TODO: Add explicit validation for `category` instead of defaulting to 'general'
 const validateForm = () => {
   setupErr.value = setup.value.trim().length === 0
   punchlineErr.value = punchline.value.trim().length === 0
   return !(setupErr.value || punchlineErr.value)
-}
+};
 
 const handleAddJoke = () => {
   if (!validateForm()) return;
 
   const stored = localStorage.getItem('favoriteJokes')
   const jokes = stored ? JSON.parse(stored) : []
-
-  const maxId = jokes.reduce((max: number, joke: any) => {
-    const id = String(joke.id)
-    const match = id.match(/^j-(\d+)$/)
-    const num = match ? parseInt(match[1]) : 0
-    return Math.max(max, num)
-  }, 0)
-
-  const newId = `j-${maxId + 1}`
+  const newId = `j-${Date.now()}`;
 
   const newJoke: Joke = {
     id: newId,
     type: category.value,
     setup: setup.value,
     punchline: punchline.value,
-  }
+  };
 
   jokes.push(newJoke)
   localStorage.setItem('favoriteJokes', JSON.stringify(jokes))
+  toast.add({ severity: 'success', summary: 'Joke successfully added', life: 3000});
   emit('updateFavoritesTableData');
   setup.value = '';
   punchline.value = '';
-}
+  category.value = 'general';
+};
 </script>
