@@ -1,7 +1,7 @@
 
 # qu-web-developer-challenge
 
-A simple Vue.js app aka "The Laugh Factory" that fetches jokes from a public API, displays them, and allows sorting, pagination, and joke management.
+A simple Vue.js app - aka "The Laugh Factory" - that fetches jokes from a public API, displays them, and allows sorting, pagination, and joke management.
 
 ## 🚀 Live Demo
 
@@ -9,15 +9,13 @@ A simple Vue.js app aka "The Laugh Factory" that fetches jokes from a public API
 
 ## Tech Stack
 
--  **Vue 3** (via Vite)
-
--  **Axios** for API requests
-
--  **Tailwind CSS** for styling
-
--  **LocalStorage** for persistence
-
--  **HTML5 + CSS3 + JavaScript (ES6) + TypeScript**
+- **Vue 3** (via Vite)
+- **TypeScript**
+- **Axios** – API requests
+- **PrimeVue** – componentry
+- **Tailwind CSS** – styling & layout
+- **LocalStorage** – data persistence
+- **HTML5 + CSS3 + JavaScript (ES6)**
 
 ## ✨ Features
 
@@ -25,15 +23,15 @@ A simple Vue.js app aka "The Laugh Factory" that fetches jokes from a public API
 
 ✅ Displays jokes in a clean, responsive card layout
 
-✅ Pagination (client-side)
+✅ Supports client-side pagination  
 
-✅ Sorting by setup, punchline, or type
+✅ Sorts by category, setup, or rating  
 
-✅ Add/remove favorite and custome jokes
+✅ Addition and removal of favorite and custom jokes  
 
-✅ Persist favorites using `localStorage`
+✅ Persists favorites using `localStorage`
 
-✅ Handles loading and no data states
+✅ Handles loading and empty states
 
 ✅ Modular structure and centralized API calls
 
@@ -42,7 +40,7 @@ A simple Vue.js app aka "The Laugh Factory" that fetches jokes from a public API
 ### Clone the Repo
 
 ```sh
-git  clone  https://github.com/JHolder17/qu-web-developer-challenge.git
+git clone  https://github.com/JHolder17/qu-web-developer-challenge.git
 ```
 ### Install dependencies
 
