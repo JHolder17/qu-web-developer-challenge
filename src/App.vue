@@ -16,10 +16,9 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import Menubar from 'primevue/menubar';
-import { ref } from 'vue';
 
 const router = useRouter();
-const menuItems = ref([
+const menuItems = [
   {
     label: 'Home',
     icon: 'pi pi-home',
@@ -41,7 +40,7 @@ const menuItems = ref([
       window.open('https://github.com/JHolder17/qu-web-developer-challenge', '_blank');;
     }
   }
-]);
+];
 </script>
 
 <style scoped>

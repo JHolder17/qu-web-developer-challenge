@@ -36,7 +36,7 @@
 import { ref, onMounted } from 'vue';
 import type { Joke } from '@/types/Joke';
 
-const favorites = ref([]);
+const favorites = ref<Joke[]>([]);
 const getFavoriteJokes = () => {
   const favoritesString = localStorage.getItem('favoriteJokes') || '';
   favorites.value = JSON.parse(favoritesString)
