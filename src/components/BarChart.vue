@@ -1,6 +1,6 @@
 <template>
-    <div class="text-xl font-bold">Bar Chart</div>
-    <Chart type="bar" :data="chartData" :options="chartOptions" />
+  <div class="text-xl font-bold">Bar Chart</div>
+  <Chart type="bar" :data="chartData" :options="chartOptions" />
 </template>
 
 <script setup lang="ts">

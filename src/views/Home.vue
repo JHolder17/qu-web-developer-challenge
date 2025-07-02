@@ -11,7 +11,8 @@
     </div>
   </div>
   <div class="my-4 mx-5">
-    <JokeTable :jokesTableData="jokesTableData" :allJokes="allJokes" :jokeTableDataLoading="jokeTableDataLoading" @updateJokesTableData="getJokes"/>
+    <JokeTable :jokesTableData="jokesTableData" :allJokes="allJokes" :jokeTableDataLoading="jokeTableDataLoading"
+      @updateJokesTableData="getJokes" />
   </div>
 </template>
 
@@ -69,4 +70,3 @@ onMounted(async () => {
   await getJokes();
 });
 </script>
-

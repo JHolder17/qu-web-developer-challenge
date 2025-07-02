@@ -1,12 +1,11 @@
 <template>
-  <AddJokeForm @updateFavoritesTableData="getFavoriteJokes"/>
+  <AddJokeForm @updateFavoritesTableData="getFavoriteJokes" />
   <Card class="my-4 mx-5">
     <template #title>
       <span class="text-xl font-bold">Favorite Jokes</span>
     </template>
     <template #content>
-      <DataTable :value="favorites" stripedRows paginator :rows="10"
-        :rowsPerPageOptions="[10, 20, 50]" class="mb-1">
+      <DataTable :value="favorites" stripedRows paginator :rows="10" :rowsPerPageOptions="[10, 20, 50]" class="mb-1">
         <Column field="type" header="Category" sortable style="width: 10%"></Column>
         <Column field="setup" header="Setup" sortable style="width: 50%"></Column>
         <Column field="punchline" header="Punchline" style="width: 30%">
@@ -42,6 +41,7 @@ const getFavoriteJokes = () => {
   favorites.value = JSON.parse(favoritesString)
 }
 
+// TO-DO move this function to a common/utility function file 
 const handleJokeRatingClick = (rating: number, joke: Joke) => {
   joke.rating = rating;
 
@@ -69,5 +69,3 @@ onMounted(() => {
   getFavoriteJokes();
 });
 </script>
-
-
