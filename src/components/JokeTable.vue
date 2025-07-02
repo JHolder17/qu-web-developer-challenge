@@ -37,7 +37,7 @@
         </Column>
         <template #empty>
           <div class="text-center py-10 text-gray-500">
-            Sorry no {{activeCategory}} jokes ¯\_(ツ)_/¯
+            Sorry no {{ activeCategory }} jokes ¯\_(ツ)_/¯
           </div>
         </template>
       </DataTable>
@@ -75,15 +75,15 @@ const handleGetJokes = () => {
 }
 
 const handleJokeRatingClick = (rating: number, joke: Joke) => {
-  joke.rating = rating;
+  const updatedJoke = { ...joke, rating };
 
   const favorites = JSON.parse(localStorage.getItem('favoriteJokes') || '[]') || [];
-  const index = favorites.findIndex((j: Joke) => j.id === joke.id);
+  const index = favorites.findIndex((j: Joke) => j.id === updatedJoke.id);
 
   if (index !== -1) {
-    favorites[index] = joke;
+    favorites[index] = updatedJoke;
   } else {
-    favorites.push(joke);
+    favorites.push(updatedJoke);
   }
 
   localStorage.setItem('favoriteJokes', JSON.stringify(favorites));
