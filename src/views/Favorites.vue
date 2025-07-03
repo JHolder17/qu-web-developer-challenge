@@ -38,7 +38,7 @@ import type { Joke } from '@/types/Joke';
 const favorites = ref<Joke[]>([]);
 const getFavoriteJokes = () => {
   const favoritesString = localStorage.getItem('favoriteJokes') || '';
-  favorites.value = JSON.parse(favoritesString)
+  favorites.value = JSON.parse(favoritesString);
 }
 
 // TODO: Move all localStorage logic into a composable for better reusability

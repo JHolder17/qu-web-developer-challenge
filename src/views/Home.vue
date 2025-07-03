@@ -39,8 +39,8 @@ const jokeByType = () => {
 }
 
 const chartData = computed(() => jokeByType());
-const allJokes = ref<Joke[]>([])
-const jokesTableData = ref<Joke[]>([])
+const allJokes = ref<Joke[]>([]);
+const jokesTableData = ref<Joke[]>([]);
 const jokeTableDataLoading = ref(true);
 
 // Merges jokes from the API response and localStorage to preserve favorite rating

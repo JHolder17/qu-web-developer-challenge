@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
 import type { Joke, JokeType } from '@/types/Joke';
 import { useToast } from 'primevue/usetoast';
 
@@ -53,8 +53,8 @@ const validateForm = () => {
 const handleAddJoke = () => {
   if (!validateForm()) return;
 
-  const stored = localStorage.getItem('favoriteJokes')
-  const jokes = stored ? JSON.parse(stored) : []
+  const stored = localStorage.getItem('favoriteJokes');
+  const jokes = stored ? JSON.parse(stored) : [];
   const newId = `j-${Date.now()}`;
 
   const newJoke: Joke = {
@@ -64,8 +64,8 @@ const handleAddJoke = () => {
     punchline: punchline.value,
   };
 
-  jokes.push(newJoke)
-  localStorage.setItem('favoriteJokes', JSON.stringify(jokes))
+  jokes.push(newJoke);
+  localStorage.setItem('favoriteJokes', JSON.stringify(jokes));
   toast.add({ severity: 'success', summary: 'Joke successfully added', life: 3000});
   emit('updateFavoritesTableData');
   setup.value = '';

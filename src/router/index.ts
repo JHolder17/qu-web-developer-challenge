@@ -16,6 +16,6 @@ const router = createRouter({
       component: Favorites,
     },
   ],
-})
+});
 
 export default router

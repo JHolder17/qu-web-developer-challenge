@@ -72,7 +72,7 @@ watch(
 const emit = defineEmits(['updateJokesTableData']);
 const handleGetJokes = () => {
   emit('updateJokesTableData');
-}
+};
 
 const handleJokeRatingClick = (rating: number, joke: Joke) => {
   const updatedJoke = { ...joke, rating };
@@ -87,14 +87,14 @@ const handleJokeRatingClick = (rating: number, joke: Joke) => {
   }
 
   localStorage.setItem('favoriteJokes', JSON.stringify(favorites));
-}
+};
 
 const revealedJokeIds = ref<number[]>([]);
 const handleJokeRevealClick = (id: number) => {
   if (!revealedJokeIds.value.includes(id)) {
     revealedJokeIds.value.push(id);
   }
-}
+};
 
 const activeCategory = ref<JokeFilter>('all');
 const handleFilterClick = (category: JokeFilter) => {
