@@ -54,7 +54,8 @@ const updatedJoke = { ...joke, rating };
     localFavorites.push(updatedJoke);
   }
 
-  localStorage.setItem('favoriteJokes', JSON.stringify(favorites));
+  localStorage.setItem('favoriteJokes', JSON.stringify(localFavorites));
+  favorites.value = localFavorites;
 }
 
 const handleRemoveFavorite = (joke: Joke) => {
