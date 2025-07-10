@@ -18,6 +18,8 @@ declare module 'vue' {
     DonutChart: typeof import('./src/components/DonutChart.vue')['default']
     FilterBar: typeof import('./src/components/FilterBar.vue')['default']
     InputText: typeof import('primevue/inputtext')['default']
+    JokeCard: typeof import('./src/components/JokeCard.vue')['default']
+    JokesCard: typeof import('./src/components/JokesCard.vue')['default']
     JokeTable: typeof import('./src/components/JokeTable.vue')['default']
     Message: typeof import('primevue/message')['default']
     ProgressSpinner: typeof import('primevue/progressspinner')['default']
