@@ -7,13 +7,7 @@
       </div>
     </template>
     <template #subtitle>
-      <div class="flex flex-wrap gap-2">
-        <Button label="All Jokes" size="small" @click="() => handleFilterClick('all')" />
-        <Button label="General" size="small" @click="() => handleFilterClick('general')" />
-        <Button label="Programming" size="small" @click="() => handleFilterClick('programming')" />
-        <Button label="Dad" size="small" @click="() => handleFilterClick('dad')" />
-        <Button label="Knock-Knock" size="small" @click="() => handleFilterClick('knock-knock')" />
-      </div>
+      <FilterBar @filter="handleFilterClick" />
     </template>
     <template #content v-if="!jokeTableDataLoading">
       <DataTable :value="tableData" stripedRows tableStyle="min-width: 50rem" paginator :rows="10"
@@ -54,6 +48,7 @@
 import { ref, watch } from 'vue';
 import type { Joke, JokeFilter } from '@/types/Joke';
 import { useFavoriteJokes } from '@/composables/useFavoriteJokes';
+import FilterBar from './FilterBar.vue';
 
 const props = defineProps({
   jokesTableData: Array,
