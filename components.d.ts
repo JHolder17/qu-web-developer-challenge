@@ -20,7 +20,7 @@ declare module 'vue' {
     InputText: typeof import('primevue/inputtext')['default']
     JokeCard: typeof import('./src/components/JokeCard.vue')['default']
     JokesCard: typeof import('./src/components/JokesCard.vue')['default']
-    JokeTable: typeof import('./src/components/JokeTable.vue')['default']
+    JokesTable: typeof import('./src/components/JokesTable.vue')['default']
     Message: typeof import('primevue/message')['default']
     ProgressSpinner: typeof import('primevue/progressspinner')['default']
     Rating: typeof import('primevue/rating')['default']
