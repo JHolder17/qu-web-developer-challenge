@@ -53,6 +53,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import type { Joke, JokeFilter } from '@/types/Joke';
+import { useFavoriteJokes } from '@/composables/useFavoriteJokes';
 
 const props = defineProps({
   jokesTableData: Array,
@@ -74,19 +75,10 @@ const handleGetJokes = () => {
   emit('updateJokesTableData');
 };
 
+const { updateJokeRating } = useFavoriteJokes();
+
 const handleJokeRatingClick = (rating: number, joke: Joke) => {
-  const updatedJoke = { ...joke, rating };
-
-  const favorites = JSON.parse(localStorage.getItem('favoriteJokes') || '[]') || [];
-  const index = favorites.findIndex((j: Joke) => j.id === updatedJoke.id);
-
-  if (index !== -1) {
-    favorites[index] = updatedJoke;
-  } else {
-    favorites.push(updatedJoke);
-  }
-
-  localStorage.setItem('favoriteJokes', JSON.stringify(favorites));
+  updateJokeRating(rating, joke);
 };
 
 const revealedJokeIds = ref<number[]>([]);

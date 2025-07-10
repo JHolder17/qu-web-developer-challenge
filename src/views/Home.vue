@@ -20,6 +20,7 @@
 import { ref, onMounted, computed } from 'vue';
 import { getOneHundredJokes } from '@/api/jokes.ts';
 import type { Joke, JokeType } from '@/types/Joke';
+import { useFavoriteJokes } from '@/composables/useFavoriteJokes';
 
 const jokeByType = () => {
   const counts = allJokes.value.reduce((acc, joke) => {
@@ -38,6 +39,8 @@ const jokeByType = () => {
   return [counts.general, counts.programming, counts.dad, counts['knock-knock']];
 }
 
+const { getFavoriteMap } = useFavoriteJokes();
+
 const chartData = computed(() => jokeByType());
 const allJokes = ref<Joke[]>([]);
 const jokesTableData = ref<Joke[]>([]);
@@ -48,10 +51,8 @@ const getJokes = async () => {
   jokeTableDataLoading.value = true;
   try {
     const jokes = await getOneHundredJokes();
-    const favoriteJokesRaw = localStorage.getItem('favoriteJokes');
-    const storedFavorites = favoriteJokesRaw ? JSON.parse(favoriteJokesRaw) : [];
-
-    const favoriteMap = new Map((storedFavorites as Joke[]).map((joke: Joke) => [joke.id, joke]));
+    const favoriteMap = getFavoriteMap();
+    
     const mergedJokes = (jokes as Joke[]).map((joke: Joke) => {
       const favorite = favoriteMap.get(joke.id);
       return favorite ? { ...joke, rating: favorite.rating } : { ...joke, rating: 0 };

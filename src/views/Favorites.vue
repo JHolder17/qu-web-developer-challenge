@@ -32,40 +32,28 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
+import { useFavoriteJokes } from '@/composables/useFavoriteJokes';
 import type { Joke } from '@/types/Joke';
+const { 
+  favorites, 
+  loadFavorites, 
+  updateJokeRating, 
+  removeFavorite 
+} = useFavoriteJokes();
 
-const favorites = ref<Joke[]>([]);
 const getFavoriteJokes = () => {
-  const favoritesString = localStorage.getItem('favoriteJokes') || '';
-  favorites.value = JSON.parse(favoritesString);
+  loadFavorites();
 }
 
-// TODO: Move all localStorage logic into a composable for better reusability
 const handleJokeRatingClick = (rating: number, joke: Joke) => {
-const updatedJoke = { ...joke, rating };
-
-  const localFavorites = JSON.parse(localStorage.getItem('favoriteJokes') || '[]') || [];
-  const index = localFavorites.findIndex((j: Joke) => j.id === updatedJoke.id);
-
-  if (index !== -1) {
-    localFavorites[index] = updatedJoke;
-  } else {
-    localFavorites.push(updatedJoke);
-  }
-
-  localStorage.setItem('favoriteJokes', JSON.stringify(localFavorites));
-  favorites.value = localFavorites;
+  updateJokeRating(rating, joke);
 }
 
-const handleRemoveFavorite = (joke: Joke) => {
-  const stored = JSON.parse(localStorage.getItem('favoriteJokes') || '[]');
-  const updated = stored.filter((j: Joke) => j.id !== joke.id);
-
-  localStorage.setItem('favoriteJokes', JSON.stringify(updated));
-
-  favorites.value = updated;
+const handleRemoveFavorite = (joke: any) => {
+  removeFavorite(joke);
 }
+
 onMounted(() => {
   getFavoriteJokes();
 });
