@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import type { Joke } from '@/types/Joke';
-import { useFavoriteJokes } from '@/composables/useFavoriteJokes';
+import { useFavoritesStore } from '@/stores/favorites';
 
 const props = defineProps({
   tableData: Array as () => Joke[],
@@ -37,9 +37,9 @@ const props = defineProps({
   activeCategory: String,
 });
 
-const { updateJokeRating } = useFavoriteJokes();
+const favoritesStore = useFavoritesStore();
 const handleJokeRatingClick = (rating: number, joke: Joke) => {
-  updateJokeRating(rating, joke);
+  favoritesStore.updateJokeRating(rating, joke);
 };
 
 const revealedJokeIds = ref<number[]>([]);
