@@ -32,29 +32,26 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import { useFavoriteJokes } from '@/composables/useFavoriteJokes';
+import { onMounted, computed } from 'vue';
+import { useFavoritesStore } from '@/stores/favorites';
 import type { Joke } from '@/types/Joke';
-const { 
-  favorites, 
-  loadFavorites, 
-  updateJokeRating, 
-  removeFavorite 
-} = useFavoriteJokes();
+
+const favoritesStore = useFavoritesStore();
+const favorites = computed(() => favoritesStore.favorites);
 
 const getFavoriteJokes = () => {
-  loadFavorites();
+  favoritesStore.loadFromLocalStorage();
 }
 
 const handleJokeRatingClick = (rating: number, joke: Joke) => {
-  updateJokeRating(rating, joke);
+  favoritesStore.updateJokeRating(rating, joke);
 }
 
 const handleRemoveFavorite = (joke: any) => {
-  removeFavorite(joke);
+  favoritesStore.removeFavorite(joke);
 }
 
 onMounted(() => {
-  getFavoriteJokes();
+  favoritesStore.initializeStore();
 });
 </script>
