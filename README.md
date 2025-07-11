@@ -14,6 +14,7 @@ A simple Vue.js app - aka "The Laugh Factory" - that fetches jokes from a public
 - **TypeScript**
 - **Axios** – API requests
 - **PrimeVue** – componentry
+- **Pinia** – state management
 - **Tailwind CSS** – styling & layout
 - **LocalStorage** – data persistence
 - **HTML5 + CSS3 + JavaScript (ES6)**
