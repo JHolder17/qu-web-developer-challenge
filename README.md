@@ -1,5 +1,5 @@
 
-# qu-web-developer-challenge
+# The Laugh Factory
 
 A simple Vue.js app - aka "The Laugh Factory" - that fetches jokes from a public API, displays them, and allows sorting, pagination, and joke management.
 
